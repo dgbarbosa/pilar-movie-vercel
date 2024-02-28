@@ -20,7 +20,7 @@ export function movieService() {
     const month = `${currentDate.getMonth() + 1}`.padStart(2, "0");
     const year = currentDate.getFullYear();
 
-    return axios.get<MoviesResponse>("/movie/discover", {
+    return axios.get<MoviesResponse>("/discover/movie", {
       language: "pt",
       "primary_release_date.gte": `${year}-${month}-${day}`,
       include_adult: false,
