@@ -15,7 +15,12 @@ export function movieService() {
   }
 
   function getUpcomingMovies(): Promise<MoviesResponse> {
-    return axios.get<MoviesResponse>("/movie/upcoming", { language: "pt" });
+    const currentDate = new Date()
+    const day = currentDate.getDate() + 1
+    const month = currentDate.getMonth() + 1
+    const year = currentDate.getFullYear()
+    
+    return axios.get<MoviesResponse>("/movie/discover", { language: "pt", "primary_release_date.gte": `${year}-${month}-${day}` });
   }
 
   function getMovie(id: string): Promise<MovieResponse> {
